@@ -10,6 +10,7 @@
      * @return mixed
      */
  	private function curl_get_https($url,$date = array(),$header,$timeout=5){
+
  		if (is_object($date)) {
             $date = self::objToArr($date);
         }
@@ -25,9 +26,7 @@
             } else {
                 $url .= $queryStr;
             }
-        } else {
-        	return '请输入正确参数';die;
-        }
+        } 
     	$curl = curl_init(); // 启动一个CURL会话
     	curl_setopt($curl, CURLOPT_URL, $url);
     	curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -52,9 +51,9 @@
 	private function curl_post_https($url,$date = array(),$header,$timeout=5){
 		if (!empty($date)) {
             if (is_array($date) || is_object($date)) {
-                $data = json_encode($date, JSON_UNESCAPED_UNICODE);
+                $date = json_encode($date, JSON_UNESCAPED_UNICODE);
             } else {
-                $data = (string)$date;
+                $date = (string)$date;
             }
         }
    		$curl = curl_init(); // 启动一个CURL会话
@@ -65,7 +64,7 @@
    		curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
    		curl_setopt($curl, CURLOPT_AUTOREFERER, 1); // 自动设置Referer
    		curl_setopt($curl, CURLOPT_POST, 1); // 发送一个常规的Post请求
-   		curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // Post提交的数据包
+   		curl_setopt($curl, CURLOPT_POSTFIELDS, $date); // Post提交的数据包
    		curl_setopt($curl, CURLOPT_TIMEOUT, 30); // 设置超时限制防止死循环
    		curl_setopt($curl, CURLOPT_HEADER, 0); // 显示返回的Header区域内容
    		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // 获取的信息以文件流的形式返回
@@ -88,10 +87,10 @@
      */
 	public function Request($type,$url,$date = array(),$header = array()){
 		$type = strtolower($type);
-		if($type == '$_post'){
+		if($type == '$_post' || $type == '$post'){
 			$type = 'post';
 		}
-		if($type == '$_get'){
+		if($type == '$_get' || $type == '$post'){
 			$type = 'get';
 		}
 		if (empty($header)) {
@@ -102,9 +101,9 @@
             }
         }
 		if($type == 'get'){
-			self::curl_get_https($url,$date,$header);
+			return self::curl_get_https($url,$date,$headerArr);
 		} else if($type == 'post'){
-			self::curl_post_https($url,$date,$header);
+			return self::curl_post_https($url,$date,$headerArr);
 		} else {
 			return '请输入正确的请求方式';
 		}
