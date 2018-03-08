@@ -3,15 +3,13 @@
     "name":"sunbingithub/curl",
     "description":"phpmessage queue wrapper",
     "license":"MIT",
-    "keywords":
-        ["message
-        queue"],
+    "keywords":["messagequeue"],
     "version":"1.0.0",
     "authors":
         [
             {
-                "name":"Jenner",
-                "email":"hypxm@qq.com"
+                "name":"sunbingithub",
+                "email":"710660831@qq.com"
             }
         ],
     "require":
