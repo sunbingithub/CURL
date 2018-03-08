@@ -24,7 +24,7 @@
             if ($charPos !== false) {
                 $url = substr_replace($url, $queryStr, $charPos, 0);
             } else {
-                $url .= $queryStr;
+                $url .= $queryStr;   
             }
         } 
     	$curl = curl_init(); // 启动一个CURL会话
