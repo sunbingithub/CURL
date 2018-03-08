@@ -20,7 +20,7 @@
             $firstChar = (strpos($url, '?') == false) ? '?' : '&';
             $queryStr = $firstChar . $queryStr;
 
-            $charPos = strpos($url, '#');
+            $charPos = strpos($url, '#');    
             if ($charPos !== false) {
                 $url = substr_replace($url, $queryStr, $charPos, 0);
             } else {
