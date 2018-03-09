@@ -6,7 +6,6 @@ namespace sunbingithub\CurlRequest;
 
  	/**
      * 模拟GET请求
-     *
      * @param string $url 请求地址
      * @param array $date 请求数据
      * @param array $header 请求头 可选参数，必须为数组，key和value与请求头对应
