@@ -11,7 +11,7 @@ namespace sunbingithub\CurlRequest;
      * @param array $date 请求数据
      * @param array $header 请求头 可选参数，必须为数组，key和value与请求头对应
      *        例如：[ 'Content-type' => "application/json;charset='utf-8'" ]
-     * @return mixed
+     * @return mixed 
      */
     public function curl_get($url,$date = array(),$header = array()){
 
