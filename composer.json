@@ -18,11 +18,9 @@
     },
  
 
-    "autoload":
-    {
-        "psr-0":
-        {
-        "Jenner\\Zebra\\MessageQueue":"src/"
+    "autoload": {
+        "psr-4": {
+            "sungithub\\": "src/"
         }
     }
 
