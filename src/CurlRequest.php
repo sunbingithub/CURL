@@ -1,6 +1,6 @@
 <?php 
 
-namespace sunbingithub\CurlRequest;
+namespace sungithub;
 
  class CurlRequest {
 
