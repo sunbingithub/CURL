@@ -5,6 +5,7 @@ namespace sunbingithub\CurlRequest;
  class CurlRequest {
 
  	/**
+   * 
      * 模拟GET请求
      * @param string $url 请求地址
      * @param array $date 请求数据
