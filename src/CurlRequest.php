@@ -4,6 +4,7 @@ namespace sungithub;
 
  class CurlRequest {
 
+  public $headerArr = ["Content-type: application/json;charset='utf-8'"];
  	/**
    * 
      * 模拟GET请求
@@ -14,13 +15,12 @@ namespace sungithub;
      * @return mixed 
      */
     public function curl_get($url,$date = array(),$header = array()){
-
-        if (empty($header)) {
-            $headerArr = ["Content-type: application/json;charset='utf-8'"];
-        } else {
+        if (!empty($header)) {
+            $headers = array();
             foreach ($header as $key => $value) {
-                $headerArr[] = "$key:$value";
+                $headers[] = "$key:$value";
             }
+            $this->headerArr = $headers;
         }
         if (!empty($date) && (is_array($date) && count($date) == count($date, 1)))
         {
@@ -59,20 +59,20 @@ namespace sungithub;
      */
     public function curl_post($url,$date = array(),$header = array()){
 
-        if (empty($header)) {
-            $headerArr = ["Content-type: application/json;charset='utf-8'"];
-        } else {
-            foreach ($header as $key => $value) {
-                $headerArr[] = "$key:$value";
-            }
-        }
-		if (!empty($date)) {
+      if (!empty($header)) {
+          $headers = array();
+          foreach ($header as $key => $value) {
+            $headers[] = "$key:$value";
+          }
+          $this->headerArr = $headers;
+      }
+		  if (!empty($date)) {
             if (is_array($date) || is_object($date)) {
                 $date = json_encode($date, JSON_UNESCAPED_UNICODE);
             } else {
                 $date = (string)$date;
             }
-        }
+      }
    		$curl = curl_init(); // 启动一个CURL会话
    		curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
    		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
@@ -93,4 +93,4 @@ namespace sungithub;
    		curl_close($curl); // 关闭CURL会话
    		return $tmpInfo; // 返回数据
 	}
- }
+}
